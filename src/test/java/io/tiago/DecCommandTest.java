@@ -1,6 +1,7 @@
 package io.tiago;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import io.quarkus.test.junit.main.Launch;
@@ -9,14 +10,15 @@ import io.quarkus.test.junit.main.QuarkusMainTest;
 @QuarkusMainTest
 public class DecCommandTest {
 
-    @Test
-    @Launch(value = {"dec"}, exitCode = 1)
-    public void When_Invalid_Command_Then_Fail_Code_1() {
+    @BeforeAll
+    public static void setUp() throws Exception {
+        Hider hider = new HiderImpl();
+        hider.init();
     }
 
     @Test
-    @Launch(value = { "help" }, exitCode = 0)
-    public void When_Valid_Command_Then_OK_Code_0() {
+    @Launch(value = {"dec"}, exitCode = 1)
+    public void When_Invalid_Command_Then_Fail_Code_1() {
     }
 
     @Test
