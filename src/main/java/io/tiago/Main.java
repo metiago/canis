@@ -2,11 +2,15 @@ package io.tiago;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
+import io.tiago.encoders.Encoder;
+import io.tiago.encoders.MemoryEnconder;
+import io.tiago.pojos.Argument;
+import io.tiago.pojos.Command;
+import io.tiago.pojos.Payload;
 
 @QuarkusMain
 public class Main implements QuarkusApplication {
@@ -36,18 +40,18 @@ public class Main implements QuarkusApplication {
                                       .orElse(null);
 
             int fromIndex = argument != null ? 2 : 1;
-            String words = String.join(" ", Arrays.asList(args).subList(fromIndex, args.length));
+            String content = String.join(" ", Arrays.asList(args).subList(fromIndex, args.length));
 
-            if(COMPOUND_COMMANDS.contains(command.getValue()) && words.equals("")) {
+            if(COMPOUND_COMMANDS.contains(command.getValue()) && content.equals("")) {
                 throw new IllegalArgumentException("Invalid commmand param.");
             }
             
-            Hider hider = new HiderImpl();
+            Encoder encoder = new MemoryEnconder();
             switch (command.getValue()) {
-                case "help" -> hider.help();
-                case "init" -> hider.init();
-                case "enc" -> hider.enc(words, argument);
-                case "dec" -> hider.dec(words, argument);
+                case "help" -> encoder.help();
+                case "init" -> encoder.init();
+                case "enc" -> encoder.enc(new Payload(content));
+                case "dec" -> encoder.dec(new Payload(content));
                 default -> throw new IllegalArgumentException("Unknown command.");
             }
 
