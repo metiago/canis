@@ -6,14 +6,17 @@ import org.junit.jupiter.api.Test;
 
 import io.quarkus.test.junit.main.Launch;
 import io.quarkus.test.junit.main.QuarkusMainTest;
+import io.tiago.encoders.Encoder;
+import io.tiago.encoders.MemoryEnconder;
+import io.tiago.pojos.Payload;
 
 @QuarkusMainTest
 public class EncCommandTest {
 
     @BeforeAll
     public static void setUp() throws Exception {
-        Hider hider = new HiderImpl();
-        hider.init();
+        Encoder encoder = new MemoryEnconder();
+        encoder.init();
     }
 
     @Test
@@ -23,11 +26,11 @@ public class EncCommandTest {
 
     @Test
     public void When_Enc_Command_Then_OK() throws Exception {
-        Hider hider = new HiderImpl();
+        Encoder encoder = new MemoryEnconder();
         String plain = "Oh boy! What am I doing ?";
-        String encrypted = hider.enc(plain, null);
+        String encrypted = encoder.enc(new Payload(plain));
         Assertions.assertFalse(plain.equals(encrypted));
-        String decripted = hider.dec(encrypted, null);
+        String decripted = encoder.dec(new Payload(encrypted));
         Assertions.assertTrue(plain.equals(decripted));
     }
 }

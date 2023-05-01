@@ -1,0 +1,27 @@
+package io.tiago.pojos;
+
+public class Argument {
+
+    private String value;
+
+    public Argument() {}
+
+    public Argument(String value) {
+        this.value = value;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return "Argument{" +
+                "value='" + value + '\'' +
+                '}';
+    }
+}

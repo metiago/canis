@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import io.quarkus.test.junit.main.Launch;
 import io.quarkus.test.junit.main.LaunchResult;
 import io.quarkus.test.junit.main.QuarkusMainTest;
+import io.tiago.enums.Menu;
 
 @QuarkusMainTest
 public class HelpCommandTest {
