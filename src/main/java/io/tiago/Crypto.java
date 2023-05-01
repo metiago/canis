@@ -19,7 +19,7 @@ public final class Crypto {
 
     private static final Logger LOG = Logger.getLogger(Crypto.class);
     private static final String VECTOR_FILE = "canis_vector.txt";
-    private static final String KEY_FILE = "canis_key.txt";
+    private static final String SECRET_KEY_FILE = "canis_secret_key.txt";
 
     public static void init() throws Exception {
         LOG.info(Messages.INIT_START);
@@ -28,7 +28,7 @@ public final class Crypto {
         // generate key and vector encoding its value with base64
         String a = Base64.getEncoder().encodeToString(key);
         String b = Base64.getEncoder().encodeToString(initVector);
-        Files.write(Paths.get(KEY_FILE), a.getBytes());
+        Files.write(Paths.get(SECRET_KEY_FILE), a.getBytes());
         Files.write(Paths.get(VECTOR_FILE), b.getBytes());
         LOG.info(Messages.INIT_DONE);
     }
@@ -66,7 +66,7 @@ public final class Crypto {
     }
 
     private static byte[] readKeyFile() throws Exception {
-        try (BufferedReader keyReader = new BufferedReader(new FileReader(KEY_FILE))) {
+        try (BufferedReader keyReader = new BufferedReader(new FileReader(SECRET_KEY_FILE))) {
             return Base64.getDecoder().decode(keyReader.readLine());
         } catch (IOException e) {
             throw new Exception("Key file not found. Consider running init command.");
