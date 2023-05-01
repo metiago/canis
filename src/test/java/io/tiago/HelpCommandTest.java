@@ -21,11 +21,6 @@ public class HelpCommandTest {
 
     @Test
     @Launch(value = { "help" }, exitCode = 0)
-    public void When_Valid_Command_Then_OK_Code_0() {
-    }
-
-    @Test
-    @Launch(value = { "help" }, exitCode = 0)
     public void When_Help_Command_Then_Valid_Menu_Options(LaunchResult result) {
         
         String values[] = new String[] {
