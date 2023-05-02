@@ -1,13 +1,15 @@
 package io.tiago;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.function.Predicate;
 
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
 import io.tiago.encoders.Encoder;
 import io.tiago.encoders.MemoryEnconder;
+import io.tiago.enums.CompoundCommand;
+import io.tiago.enums.Option;
+import io.tiago.enums.SingleCommand;
 import io.tiago.pojos.Argument;
 import io.tiago.pojos.Command;
 import io.tiago.pojos.Payload;
@@ -15,18 +17,12 @@ import io.tiago.pojos.Payload;
 @QuarkusMain
 public class Main implements QuarkusApplication {
 
-    private static final List<String> SINGLE_COMMANDS = List.of("help", "init");
-
-    private static final List<String> COMPOUND_COMMANDS = List.of("enc", "dec");
-
-    private static final List<String> ARGS = List.of("--f");
-
     @Override
     public int run(String... args) {
 
         try {
-            Predicate<String> hasSingle = e -> SINGLE_COMMANDS.contains(e);
-            Predicate<String> hasCompound = e -> COMPOUND_COMMANDS.contains(e);
+            Predicate<String> hasSingle = e -> SingleCommand.getValues().contains(e);
+            Predicate<String> hasCompound = e -> CompoundCommand.getValues().contains(e);
             Command command = Arrays.stream(args)
                                     .filter(hasSingle.or(hasCompound))
                                     .map(Command::new)
@@ -34,15 +30,15 @@ public class Main implements QuarkusApplication {
                                     .orElseThrow(() -> new IllegalArgumentException("Unknown command."));
 
             Argument argument = Arrays.stream(args)
-                                      .filter(ARGS::contains)
-                                      .map(Argument::new)
-                                      .findFirst()
-                                      .orElse(null);
+                                    .filter(Option.getValues()::contains)
+                                    .map(Argument::new)
+                                    .findFirst()
+                                    .orElse(null);
 
             int fromIndex = argument != null ? 2 : 1;
             String content = String.join(" ", Arrays.asList(args).subList(fromIndex, args.length));
 
-            if(COMPOUND_COMMANDS.contains(command.getValue()) && content.equals("")) {
+            if(CompoundCommand.getValues().contains(command.getValue()) && content.equals("")) {
                 throw new IllegalArgumentException("Invalid commmand param.");
             }
             
