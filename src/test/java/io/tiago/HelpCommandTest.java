@@ -26,10 +26,10 @@ public class HelpCommandTest {
         
         String values[] = new String[] {
             "Commands:",
-            String.format("%s%-9s%s%n", "init", " ", "Generate private keys"),
+            String.format("%s%-9s%s%n", "init", " ", "Generate private keys."),
             String.format("%s%-10s%s%n", "enc", " ", "Encrypt input value."),
             String.format("%s%-10s%s%n", "dec", " ", "Decrypt input value."),
-            "Arguments:",
+            "General Options:",
             String.format("%s%-10s%s%n", "--f", " ", "Optional - save message to file.")
         };
         
