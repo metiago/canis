@@ -8,8 +8,6 @@ import io.tiago.utils.CryptoUtil;
 
 public class MemoryEnconder implements Encoder {
 
-    // private static final String CANIS_FILE = "data.txt";
-
     @Override
     public void help() {
         Arrays.asList(Menu.values()).stream().forEach(m -> System.out.println(m.value()));
