@@ -10,7 +10,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.jboss.logging.Logger;
 
-import io.tiago.enums.Messages;
+import io.tiago.enums.ConsoleMessage;
 
 public final class CryptoUtil {
 
@@ -18,7 +18,7 @@ public final class CryptoUtil {
     
 
     public static void init() throws Exception {
-        LOG.info(Messages.INIT_START);
+        LOG.info(ConsoleMessage.INIT_START);
         byte[] key = getRandomNonce();
         byte[] initVector = getRandomNonce();
         // generate key and vector encoding its value with base64
@@ -26,7 +26,7 @@ public final class CryptoUtil {
         String b = Base64.getEncoder().encodeToString(initVector);
         FileUtil.write(Constants.SECRET_KEY_FILE, a);
         FileUtil.write(Constants.VECTOR_FILE, b);
-        LOG.info(Messages.INIT_DONE);
+        LOG.info(ConsoleMessage.INIT_DONE);
     }
 
     public static String encrypt(String value) throws Exception {
