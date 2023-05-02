@@ -30,7 +30,7 @@ public class HelpCommandTest {
             String.format("%s%-10s%s%n", "enc", " ", "Encrypt input value."),
             String.format("%s%-10s%s%n", "dec", " ", "Decrypt input value."),
             "General Options:",
-            String.format("%s%-10s%s%n", "--f", " ", "Optional - save message to file.")
+            String.format("%s%-10s%s%n", "--p", " ", "Save text to a .txt file.")
         };
         
         List<String> menus = Arrays.asList(Menu.values()).stream().map(Menu::value).collect(Collectors.toList());
