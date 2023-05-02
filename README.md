@@ -4,7 +4,7 @@ CLI to encrypt and decrypt texts.
 
 ### Build
 ```bash
-mvnw.cmd clean install -Dnative
+mvn clean install -Dnative
 ```
 
 ### Testing
