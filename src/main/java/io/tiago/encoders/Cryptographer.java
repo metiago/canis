@@ -20,7 +20,7 @@ import io.tiago.utils.FileUtil;
 
 public class Cryptographer {
 
-    public Vault init() throws Exception {        
+    public Vault init() throws Exception {
         byte[] initVector = getRandomNonce();
         byte[] key = getRandomNonce();
         String encodedIV = Base64.getEncoder().encodeToString(initVector);
