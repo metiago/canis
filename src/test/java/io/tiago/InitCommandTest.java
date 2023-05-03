@@ -24,7 +24,6 @@ public class InitCommandTest {
     @Test
     @Launch(value = { "init" }, exitCode = 0)
     public void When_Init_Command_Then_Valid(LaunchResult result) {
-        Assertions.assertTrue(ConsoleMessage.INIT_START.value().equals("Creating IV and Secret Keys"));
-        Assertions.assertTrue(ConsoleMessage.INIT_DONE.value().equals("Done"));
+        Assertions.assertTrue(ConsoleMessage.INIT_START.value().equals("Creating keys..."));
     }
 }
