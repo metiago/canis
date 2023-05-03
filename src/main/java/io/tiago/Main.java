@@ -5,8 +5,8 @@ import java.util.function.Predicate;
 
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
-import io.tiago.encoders.Encoder;
-import io.tiago.encoders.MemoryEnconder;
+import io.tiago.encoders.Transformer;
+import io.tiago.encoders.MemoryTransformer;
 import io.tiago.enums.CompoundCommand;
 import io.tiago.enums.Option;
 import io.tiago.enums.SingleCommand;
@@ -42,12 +42,12 @@ public class Main implements QuarkusApplication {
                 throw new IllegalArgumentException("Invalid commmand param.");
             }
             
-            Encoder encoder = new MemoryEnconder();
+            Transformer transformer = new MemoryTransformer();
             switch (command.getValue()) {
-                case "help" -> encoder.help();
-                case "init" -> encoder.init();
-                case "enc" -> encoder.enc(new Payload(content));
-                case "dec" -> encoder.dec(new Payload(content));
+                case "help" -> transformer.help();
+                case "init" -> transformer.init();
+                case "enc" -> transformer.encrypt(new Payload(content));
+                case "dec" -> transformer.decrypt(new Payload(content));
                 default -> throw new IllegalArgumentException("Unknown command.");
             }
 
