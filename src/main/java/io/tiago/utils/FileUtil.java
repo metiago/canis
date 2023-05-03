@@ -25,6 +25,14 @@ public class FileUtil {
         }
     }
 
+    public static byte[] readSaltKeyFile() throws Exception {
+        try (BufferedReader reader = new BufferedReader(new FileReader(Constants.SALT_FILE))) {
+            return Base64.getDecoder().decode(reader.readLine());
+        } catch (IOException e) {
+            throw new Exception("Salt file not found. Consider running init command.");
+        }
+    }
+
     public static void write(String file, String content) throws Exception {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
             writer.write(content);
