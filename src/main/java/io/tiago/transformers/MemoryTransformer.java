@@ -40,16 +40,6 @@ public class MemoryTransformer implements Transformer {
         String message = cryptographer.decrypt(payload.getContent()); 
         System.out.println("Decrypted message:");
         System.out.println(message);
-        // if (argument != null) {
-        //     for (String m : Files.readAllLines(Paths.get(CANIS_FILE))) {
-        //         System.out.println(CryptoUtil.decrypt(m));
-        //     }
-        // }
-        // if (argument != null) {
-        //     Files.write(Paths.get(CANIS_FILE), message.getBytes(),
-        //             StandardOpenOption.CREATE,
-        //             StandardOpenOption.TRUNCATE_EXISTING);
-        // }
         return message;
     }
 }
