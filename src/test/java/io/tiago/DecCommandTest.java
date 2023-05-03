@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import io.quarkus.test.junit.main.Launch;
 import io.quarkus.test.junit.main.QuarkusMainTest;
-import io.tiago.encoders.Transformer;
-import io.tiago.encoders.MemoryTransformer;
 import io.tiago.pojos.Payload;
+import io.tiago.transformers.MemoryTransformer;
+import io.tiago.transformers.Transformer;
 
 @QuarkusMainTest
 public class DecCommandTest {

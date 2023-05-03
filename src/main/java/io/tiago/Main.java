@@ -5,14 +5,14 @@ import java.util.function.Predicate;
 
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
-import io.tiago.encoders.Transformer;
-import io.tiago.encoders.MemoryTransformer;
 import io.tiago.enums.CompoundCommand;
 import io.tiago.enums.Option;
 import io.tiago.enums.SingleCommand;
 import io.tiago.pojos.Argument;
 import io.tiago.pojos.Command;
 import io.tiago.pojos.Payload;
+import io.tiago.transformers.MemoryTransformer;
+import io.tiago.transformers.Transformer;
 
 @QuarkusMain
 public class Main implements QuarkusApplication {
