@@ -34,4 +34,13 @@ canis help
 ### Dist
 ```bash
 mvn -Pdist package -DskipTests
+
+# check jreleaser config
+mvn -Prelease jreleaser:config -Djreleaser.select.current.platform
+
+# check change log
+mvn -Prelease jreleaser:changelog
+
+# create tag and release to Github
+mvn -Prelease jreleaser:release -Djreleaser.select.current.platform
 ```
