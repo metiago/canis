@@ -165,5 +165,60 @@
         <executable-suffix>.exe</executable-suffix>
       </properties>
     </profile>
+
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.jreleaser</groupId>
+            <artifactId>jreleaser-maven-plugin</artifactId>
+            <version>1.6.0</version>
+            <configuration>
+              <jreleaser>
+                <project>
+                  <description>app - Sample Quarkus CLI application</description>
+                  <website>https://github.com/metiago</website>
+                  <docsUrl>https://github.com/metiago</docsUrl>
+                  <license>APACHE-2.0</license>
+                  <authors>Tiago</authors>
+                  <copyright>2023</copyright>
+                </project>
+                <release>
+                  <github>
+                    <changelog>
+                      <formatted>ALWAYS</formatted>
+                      <preset>conventional-commits</preset>
+                    </changelog>
+                  </github>
+                </release>
+                <distributions>
+                  <app>
+                    <type>BINARY</type>
+                    <artifacts>
+                      <artifact>
+                        <path>
+                          ${project.basedir}/target/${project.artifactId}-{{projectVersion}}-linux-x86_64.tar.gz</path>
+                        <platform>linux-x86_64</platform>
+                      </artifact>
+                      <artifact>
+                        <path>
+                          ${project.basedir}/target/${project.artifactId}-{{projectVersion}}-windows-x86_64.zip</path>
+                        <platform>windows-x86_64</platform>
+                      </artifact>
+                      <artifact>
+                        <path>
+                          ${project.basedir}/target/${project.artifactId}-{{projectVersion}}-osx-x86_64.zip</path>
+                        <platform>osx-x86_64</platform>
+                      </artifact>
+                    </artifacts>
+                  </app>
+                </distributions>
+              </jreleaser>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
   </profiles>
 </project>
