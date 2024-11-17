@@ -1,6 +1,6 @@
 ## Canis
 
-CLI to encrypt and decrypt texts.
+Engine to encrypt and decrypt data using Symmetric cryptography.
 
 ### Prerequisites
 
