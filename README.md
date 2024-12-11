@@ -1,6 +1,6 @@
 ## Canis
 
-Engine to encrypt and decrypt data using Symmetric cryptography.
+Quarkus CLI to encrypt and decrypt data using Symmetric cryptography.
 
 ### Prerequisites
 
